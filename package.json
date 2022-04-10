@@ -7,10 +7,17 @@
     "start": "parcel index.html",
     "build": "parcel build index.html --dist-dir ./dist"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Blagoja95/recipe-app-demo.git"
+  },
   "author": "Boris Blagojevic",
   "license": "ISC",
   "devDependencies": {
     "parcel": "^2.4.1",
     "sass": "^1.50.0"
+  },
+  "dependencies": {
+    "@parcel/resolver-glob": "^2.4.1"
   }
 }
