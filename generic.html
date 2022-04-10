@@ -14,6 +14,7 @@
     />
     <link rel="stylesheet" href="src/css/main.css" />
     <noscript><link rel="stylesheet" href="src/css/noscript.css" /></noscript>
+    <script type="module" src="src/js/controller.js"></script>
   </head>
   <body class="is-preload">
     <!-- Wrapper -->
@@ -51,41 +52,34 @@
       <!-- Main -->
       <div id="main">
         <div class="inner">
-          <h1>Generic Page</h1>
+          <h1 class="main-title">Generic Page</h1>
           <span class="image main"
-            ><img src="src/images/pic13.jpg" alt=""
+            ><img src="src/images/pic13.jpg" alt="" class="main-image"
           /></span>
-          <p>
-            Donec eget ex magna. Interdum et malesuada fames ac ante ipsum
-            primis in faucibus. Pellentesque venenatis dolor imperdiet dolor
-            mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor
-            sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet,
-            fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit.
-            Donec urna ex, lacinia in purus ac, pretium pulvinar mauris.
-            Curabitur sapien risus, commodo eget turpis at, elementum convallis
-            elit. Pellentesque enim turpis, hendrerit tristique.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-            dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora
-            torquent per conubia nostra, per inceptos himenaeos. Etiam tristique
-            libero eu nibh porttitor fermentum. Nullam venenatis erat id
-            vehicula viverra. Nunc ultrices eros ut ultricies condimentum.
-            Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae
-            dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in
-            lectus. Pellentesque habitant morbi tristique senectus et netus et
-            malesuada fames ac turpis egestas. In non lorem sit amet elit
-            placerat maximus. Pellentesque aliquam maximus risus, vel venenatis
-            mauris vehicula hendrerit.
-          </p>
-          <p>
-            Interdum et malesuada fames ac ante ipsum primis in faucibus.
-            Pellentesque venenatis dolor imperdiet dolor mattis sagittis.
-            Praesent rutrum sem diam, vitae egestas enim auctor sit amet.
-            Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien
-            risus, commodo eget turpis at, elementum convallis elit.
-            Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.
-          </p>
+
+          <div class="stats">
+            <span>
+              <ion-icon name="time"></ion-icon>
+              <span class="stats__time"> 00 </span>
+            </span>
+            <span>
+              <ion-icon name="people"></ion-icon>
+              <span class="stats__servings"> 0 </span>
+            </span>
+            <span>
+              <ion-icon name="star-half"></ion-icon>
+              <span class="stats__difficulty"> Medium </span>
+            </span>
+          </div>
+
+          <div class="ingredients">
+            <h2 class="sub-title sub-title--ingredients">
+              Required Ingredients:
+            </h2>
+            <ul class="ingredients__list">
+              <!-- <li class="ingredient">ingredient</li> -->
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -179,5 +173,8 @@
     <script src="src/js/breakpoints.min.js"></script>
     <script src="src/js/util.js"></script>
     <script src="src/js/main.js"></script>
+
+    <!-- ionicons -->
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
   </body>
 </html>
