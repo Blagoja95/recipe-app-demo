@@ -3,7 +3,7 @@
 
 ## USE
 App is deployed to Netlify
-[LIVE APP](recipe-app-demo-bb.netlify.app)
+[LIVE APP](https://recipe-app-demo-bb.netlify.app/)
 
 OR
 
