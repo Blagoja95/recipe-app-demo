@@ -45,6 +45,13 @@ class View {
     this._insertHTML(elements.ingredientsList, html);
   }
 
+  _renderFacebookShareBtn(input) {
+    const html = `
+    <iframe src="https://www.facebook.com/plugins/share_button.php?href=${input}&layout=button&size=large&width=78&height=28&appId" width="78" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+    `;
+    this._insertHTML(elements.facebookShare, html);
+  }
+
   _insertHTML(element, html) {
     element.insertAdjacentHTML("beforeend", html);
   }
@@ -64,7 +71,8 @@ class View {
     console.log(data);
     if (elements.mainTitle == null) return;
 
-    //change title, banner image
+    //change webpage title, main title, banner image
+    elements.pageTitle.textContent = data.title;
     elements.mainTitle.innerHTML = data.title;
     elements.mainImage.src = data.image_url;
 
@@ -76,6 +84,14 @@ class View {
     data.ingredients.forEach((ingredient) =>
       this._renderIngredient(ingredient)
     );
+
+    // how to cook it
+    elements.preparationName.innerHTML = data.publisher;
+    elements.preparationLink.href = data.source_url;
+
+    // share btn for fb
+    const pageUrl = document.URL;
+    this._renderFacebookShareBtn(pageUrl);
   }
 }
 
