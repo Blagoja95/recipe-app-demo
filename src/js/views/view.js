@@ -10,21 +10,43 @@ class View {
               <span class="image">
                 <img src="${data.image_url}" alt="${data.title}" class="img"/>
               </span>
-              <a href="generic.html?&recipe_id=#${data.id}">
+              <a href="recipe.html?&recipe_id=#${data.id}">
                 <h2>${data.title}</h2>
         
               </a>
             </article>
         `;
 
-    elements.tiles.insertAdjacentHTML("beforeend", html);
+    this._insertHTML(elements.tiles, html);
   }
 
   _renderIngredient(input) {
     const html = `
     <li class="ingredient">${input}</li>
     `;
-    elements.ingredientsList.insertAdjacentHTML("beforeend", html);
+    this._insertHTML(elements.ingredientsList, html);
+  }
+
+  _renderIngredient(input) {
+    const html = `
+    <li class="ingredient">
+                <ion-icon name="basket"></ion-icon>
+                ${
+                  input.quantity === null
+                    ? ""
+                    : `<span class="quantity">${input.quantity}</span>`
+                }
+
+                <span class="unit"> ${input.unit}</span>
+                <span class="description">${input.description}</span>
+              </li>
+    `;
+
+    this._insertHTML(elements.ingredientsList, html);
+  }
+
+  _insertHTML(element, html) {
+    element.insertAdjacentHTML("beforeend", html);
   }
 
   renderRecipes(data, init = true) {
@@ -47,8 +69,8 @@ class View {
     elements.mainImage.src = data.image_url;
 
     //recipe stats
-    elements.statsTime.innerHTML = data.servings;
-    elements.statsServings.innerHTML = data.cooking_time;
+    elements.statsServings.innerHTML = data.servings;
+    elements.statsTime.innerHTML = data.cooking_time;
 
     // ingredient
     data.ingredients.forEach((ingredient) =>
