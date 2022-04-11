@@ -1,7 +1,7 @@
-
 # HELLO AND WELCOME TO THE RECEPI APP
 
 ## USE
+
 App is deployed to Netlify
 [LIVE APP](https://recipe-app-demo-bb.netlify.app/)
 
@@ -12,33 +12,8 @@ OR
 3. `npm start`
 4. http://localhost:1234/
 
-## Phantom by HTML5 UP
-html5up.net | @ajlkn
-Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+## Tools and resources i used:
 
-
-This is Phantom, a simple design built around a grid of large, colorful, semi-interactive
-image tiles (of which you can have as many or as few as you like). Makes use of some
-SVG and animation techniques I've been experimenting with on that other project of mine
-you may have heard about (https://carrd.co), and includes a handy generic page for whatever.
-
-Demo images* courtesy of Unsplash, a radtastic collection of CC0 (public domain) images
-you can use for pretty much whatever.
-
-(* = not included)
-
-AJ
-aj@lkn.io | @ajlkn
-
-
-Credits:
-
-	Demo Images:
-		Unsplash (unsplash.com)
-
-	Icons:
-		Font Awesome (fontawesome.io)
-
-	Other:
-		jQuery (jquery.com)
-		Responsive Tools (github.com/ajlkn/responsive-tools)
+- [Formspree](https://formspree.io) for contact form
+- [Forkify API](https://forkify-api.herokuapp.com/v2) for recipes data
+- [Phantom theme](https://html5up.net/phantom) for design
