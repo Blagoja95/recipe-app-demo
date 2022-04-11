@@ -73,7 +73,7 @@ class View {
   }
 
   // Clear
-  _clearTiles(element) {
+  _clearTiles(elements) {
     while (elements.firstChild) elements.removeChild(elements.firstChild);
   }
 
