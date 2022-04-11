@@ -19,3 +19,8 @@ export const preparationName = document.querySelector(".preparation__name");
 export const preparationLink = document.querySelector(".preparation__link");
 
 export const facebookShare = document.querySelector(".facebok-share");
+
+
+// ALL RECIPE PAGE
+export const allRecipeTiles = document.querySelector('.tiles--all-recipe');
+export const LoadMoreBTN  = document.querySelector('.btn--load-more');

@@ -1,23 +1,39 @@
 import * as elements from "./viewElements.js";
-const MAXRECIPE = 12;
-
 class View {
-  constructor() {}
+  constructor() {
+    this.INIT_MAX_RECIPES = 12;
+    this.DEFAULT_START = 0;
+  }
 
-  _renderTile(data) {
+  _renderTile(data, element) {
+    if (!data) return;
     const html = `
-        <article class="style1">
+         <article class="style1">
               <span class="image">
                 <img src="${data.image_url}" alt="${data.title}" class="img"/>
-              </span>
-              <a href="recipe.html?&recipe_id=#${data.id}">
-                <h2>${data.title}</h2>
-        
-              </a>
-            </article>
+             </span>
+           <a href="recipe.html?&recipe_id=#${data.id}">
+               <h2>${data.title}</h2>
+             </a>
+           </article>
         `;
 
-    this._insertHTML(elements.tiles, html);
+    this._insertHTML(element, html);
+  }
+
+  _renderRecipesListTile(title, element) {
+    if (!title) return;
+    const html = `
+    <article class="style1">
+      <span class="image">
+       <img src="src/images/pic01.jpg" alt="" />
+       </span>
+       <a href="#tiles">
+        <h2>${title}</h2>
+      </a>
+    </article> `;
+
+    this._insertHTML(element, html);
   }
 
   _renderIngredient(input) {
@@ -56,19 +72,37 @@ class View {
     element.insertAdjacentHTML("beforeend", html);
   }
 
-  renderRecipes(data, init = true) {
-    console.log(data);
-    // Clear
-    if (elements.tiles == null) return;
-
-    while (elements.tiles.firstChild)
-      elements.tiles.removeChild(elements.tiles.firstChild);
-
-    if (init) for (let i = 0; i < MAXRECIPE; i++) this._renderTile(data[i]);
+  // Clear
+  _clearTiles(element) {
+    while (elements.firstChild) elements.removeChild(elements.firstChild);
   }
 
-  renderSpecificRecipe(data) {
+  _render(data, start, end, element, recipeGroup = false) {
+    if (element == null) return;
+
+    if (!recipeGroup) {
+      this._clearTiles(element);
+      for (start; start < end; start++) this._renderTile(data[start], element);
+    } else
+      for (start; start < end; start++)
+        this._renderRecipesListTile(data[start], element);
+  }
+
+  initRender = (data) => {
+    this._render(
+      data,
+      this.DEFAULT_START,
+      this.INIT_MAX_RECIPES,
+      elements.tiles
+    );
+  };
+
+  allRecipeListsRender = (data, start, end) => {
     console.log(data);
+    this._render(data, start, end, elements.tiles, true);
+  };
+
+  renderSpecificRecipe(data) {
     if (elements.mainTitle == null) return;
 
     //change webpage title, main title, banner image
@@ -93,6 +127,14 @@ class View {
     const pageUrl = document.URL;
     this._renderFacebookShareBtn(pageUrl);
   }
+
+  // event listeners
+  bindLoadMoreTiles = (handler) => {
+    elements.LoadMoreBTN.addEventListener("click", (event) => {
+      event.preventDefault();
+      handler("hi");
+    });
+  };
 }
 
 export default View;
