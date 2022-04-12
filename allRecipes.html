@@ -15,7 +15,7 @@
     <link rel="icon" type="image/x-icon" href="src/images/logo.svg" />
     <link rel="stylesheet" href="src/css/main.css" />
     <noscript><link rel="stylesheet" href="src/css/noscript.css" /></noscript>
-    <script type="module" src="src/js/controller.js"></script>
+    <script type="module" src="src/js/controller/controllerAll.js"></script>
   </head>
   <body class="is-preload">
     <!-- Wrapper -->
@@ -57,17 +57,26 @@
         <div class="inner">
           <header>
             <h1>All available recipes</h1>
-            <h2>
-              List of all available recipes
-            </h2>
+            <p>
+              List of all available recipes that are grouped by a name or an ingredient they use.
+            </p>
             
           </header>
-          <section class="tiles" id="tiles">
+          <section class="search-box">
+            <form action="#" class="recipe-form">
+              <input type="text" name="recipe-input" class="recipe-form__input" value="" placeholder="Recipe roup">
+              <input type="submit" value="Search"  class="recipe-form__search" class="primary">
+            </form>
+          </section>
+          <section class="tiles tiles-all" id="tiles">
+            <!-- so parcel can load img  -->
+            <img src="src/images/pic01.jpg" alt="" class="recipe-group__img hidden"/>
+            
             <!-- <article class="style1">
               <span class="image">
                 <img src="src/images/pic01.jpg" alt="" />
               </span>
-              <a href="generic.html">
+              <a href="#">
                 <h2>Magna</h2>
                 <div class="content">
                   <p>
@@ -79,7 +88,9 @@
             </article> -->
           </section>
           <div class="all-recipe-box" id="recipe-list-end">
-            <a href="" class="button fit small btn--load-more">Load more recipes</a>
+            <a href="#" class="button fit small btn--load-more">Load more recipes</a>
+            <a href="#tiles" class="button primary fit btn--group">Group recipes</a>
+
           </div>
         </div>
       </div>

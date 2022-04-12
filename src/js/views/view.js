@@ -3,6 +3,8 @@ class View {
   constructor() {
     this.INIT_MAX_RECIPES = 12;
     this.DEFAULT_START = 0;
+    this.RECIPE_GROUP_CLASS = "btn--recipe-group";
+    this.loadMoreGroupsState = true;
   }
 
   _renderTile(data, element) {
@@ -26,9 +28,9 @@ class View {
     const html = `
     <article class="style1">
       <span class="image">
-       <img src="src/images/pic01.jpg" alt="" />
+       <img src="" alt="" class="recipe-group__img"/>
        </span>
-       <a href="#tiles">
+       <a href="#tile" class="btn--recipe-group ${title}">
         <h2>${title}</h2>
       </a>
     </article> `;
@@ -68,20 +70,21 @@ class View {
     this._insertHTML(elements.facebookShare, html);
   }
 
-  _insertHTML(element, html) {
-    element.insertAdjacentHTML("beforeend", html);
+  _insertHTML(element, html, position = "beforeend") {
+    element.insertAdjacentHTML(position, html);
   }
 
   // Clear
-  _clearTiles(element) {
+  _clearTiles(elements) {
     while (elements.firstChild) elements.removeChild(elements.firstChild);
   }
 
-  _render(data, start, end, element, recipeGroup = false) {
+  _render(data, start, end, element, recipeGroups = false, moreRecipe = false) {
+    console.log(data);
     if (element == null) return;
 
-    if (!recipeGroup) {
-      this._clearTiles(element);
+    if (!recipeGroups) {
+      if (!moreRecipe) this._clearTiles(element);
       for (start; start < end; start++) this._renderTile(data[start], element);
     } else
       for (start; start < end; start++)
@@ -89,6 +92,7 @@ class View {
   }
 
   initRender = (data) => {
+    console.log("view init render");
     this._render(
       data,
       this.DEFAULT_START,
@@ -97,9 +101,21 @@ class View {
     );
   };
 
-  allRecipeListsRender = (data, start, end) => {
-    console.log(data);
-    this._render(data, start, end, elements.tiles, true);
+  initAllGroupRender = (data, start, end) => {
+    this._clearTiles(elements.tilesAll);
+    this._render(data, start, end, elements.tilesAll, true);
+  };
+
+  allRecipeGroupRender = (data, start, end) => {
+    this._render(data, start, end, elements.tilesAll, true);
+  };
+
+  allRecipes = (data, start, end) => {
+    this._render(data, start, end, elements.tilesAll);
+  };
+
+  renderMoreRecipes = (data, start, end) => {
+    this._render(data, start, end, elements.tilesAll, false, true);
   };
 
   renderSpecificRecipe(data) {
@@ -130,9 +146,35 @@ class View {
 
   // event listeners
   bindLoadMoreTiles = (handler) => {
+    if (!elements.LoadMoreBTN) return;
     elements.LoadMoreBTN.addEventListener("click", (event) => {
       event.preventDefault();
-      handler("hi");
+      handler(this.loadMoreGroupsState);
+    });
+  };
+
+  bindLoadRecipeGroup = (handler) => {
+    if (!elements.tilesAll) return;
+    elements.tilesAll.addEventListener("click", (event) => {
+      event.preventDefault();
+      const name = event.target.className.split(" ");
+      if (name.length < 2 || name === "" || name[0] != "btn--recipe-group")
+        return;
+      else {
+        // switch btn role and get name of recipe group
+        this.loadMoreGroupsState = false;
+        if (name.length < 3) handler(name[1]);
+        else handler(`${name[1]} ${name[2]}`);
+      }
+    });
+  };
+
+  bindGroupRecipes = (handler) => {
+    if (!elements.GroupRecipesBTN) return;
+    elements.GroupRecipesBTN.addEventListener("click", () => {
+      // reset btn load
+      this.loadMoreGroupsState = true;
+      handler();
     });
   };
 }

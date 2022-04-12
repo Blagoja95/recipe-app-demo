@@ -4,8 +4,8 @@
   "description": "demo of the recipe app",
   "default": "index.html",
   "scripts": {
-    "start": "parcel index.html recipe.html allRecipe.html",
-    "build": "parcel build index.html recipe.html allRecipe.html --dist-dir ./dist"
+    "start": "parcel index.html recipe.html allRecipes.html",
+    "build": "parcel build index.html recipe.html allRecipes.html --dist-dir ./dist"
   },
   "repository": {
     "type": "git",

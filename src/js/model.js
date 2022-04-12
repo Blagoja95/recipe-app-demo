@@ -15,6 +15,7 @@ class Model {
 
   _fetchRecipes = async (input, all = true) => {
     try {
+      console.log("feched");
       const promise = await fetch(
         `${all ? this.RECIPE_URL : this.SPECIFIC_RECIPE_URL}${input}`
       );
@@ -30,16 +31,17 @@ class Model {
     this.recipes = await this._fetchRecipes(input);
   }
 
+  async getRecipeGroup(input) {
+    this.recipes = await this._fetchRecipes(input);
+  }
+
   async getInitRecipes() {
-    try {
-      const randIndexOfSearchArr = Math.trunc(Math.random() * search.length);
-      // some queris return recipes list with less then 12 items
-      do {
-        this.recipes = await this._fetchRecipes(search[randIndexOfSearchArr]);
-      } while (this.recipes.recipes.length < 12);
-    } catch (error) {
-      console.error(error);
-    }
+    const randIndexOfSearchArr = Math.trunc(Math.random() * search.length);
+    // some queris return recipes list with less then 12 items
+    // do {
+      console.log("model do while");
+      this.recipes = await this._fetchRecipes(search[randIndexOfSearchArr]);
+    // } while (this.recipes.recipes.length < 12);
   }
 
   async getSpecificRecipe(id, state = false) {

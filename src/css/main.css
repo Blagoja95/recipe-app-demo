@@ -3415,6 +3415,29 @@ html {
   padding: 5rem 0;
 }
 
+/* All recipe */
+.btn--recipe-group {
+  z-index: 3 !important;
+}
+
+.recipe-group__img {
+  background-image: url("../images/pic01.jpg");
+  background-size: contain;
+  padding: 200px 400px;
+}
+
+.hidden {
+  display: none;
+}
+
+.recipe-form {
+  display: flex;
+  gap: 3rem;
+}
+
+.recipe-form__input {
+  width: 50% !important;
+}
 /* Specific recepi */
 .img {
   /* width: 412px !important; */
@@ -3489,6 +3512,15 @@ html {
   .img {
     height: 356px;
   }
+  .recipe-group__img {
+    padding: 170px 400px;
+  }
+}
+
+@media (max-width: 1280) {
+  .recipe-group__img {
+    padding: 160px 400px;
+  }
 }
 
 @media (max-width: 800px) {
@@ -3511,6 +3543,9 @@ html {
   }
   .preparation__description {
     font-size: 16px;
+  }
+  .recipe-group__img {
+    padding: 145px 400px;
   }
 }
 

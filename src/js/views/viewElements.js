@@ -1,5 +1,5 @@
 // HOME PAGE
-export const tiles = document.querySelector(".tiles");
+export const tiles = document.querySelector(".tiles-home");
 
 // SPECIFIC RECIPE PAGE
 export const pageTitle = document.querySelector("title");
@@ -20,7 +20,13 @@ export const preparationLink = document.querySelector(".preparation__link");
 
 export const facebookShare = document.querySelector(".facebok-share");
 
-
 // ALL RECIPE PAGE
-export const allRecipeTiles = document.querySelector('.tiles--all-recipe');
-export const LoadMoreBTN  = document.querySelector('.btn--load-more');
+export const allRecipeTiles = document.querySelector(".tiles--all-recipe");
+export const tilesAll = document.querySelector(".tiles-all");
+
+export const LoadMoreBTN = document.querySelector(".btn--load-more");
+export const GroupRecipesBTN = document.querySelector(".btn--group");
+
+export const form = document.querySelector(".recipe-form");
+export const formInput = document.querySelector(".recipe-form__input");
+export const formSumbmit = document.querySelector(".recipe-form__search");
