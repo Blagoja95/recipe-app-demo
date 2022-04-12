@@ -81,7 +81,8 @@ class Model {
 
   _getUrl = () => {
     const fullUrl = window.location;
-    const url = fullUrl.href.split("newRecipe");
+    const url = fullUrl.href.split("newrecipe");
+    console.log(url[0]);
     if (url[0] != "") return url[0];
   };
 
