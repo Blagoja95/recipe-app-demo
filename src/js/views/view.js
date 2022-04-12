@@ -145,7 +145,6 @@ class View {
   }
 
   // event listeners
-  if(!elements.LoadMoreBTN) return;
   bindLoadMoreTiles = (handler) => {
     if (!elements.LoadMoreBTN) return;
     elements.LoadMoreBTN.addEventListener("click", (event) => {
