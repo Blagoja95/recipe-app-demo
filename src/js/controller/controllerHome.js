@@ -1,4 +1,4 @@
-import View from "../views/view.js";
+import View from "../views/viewHome.js";
 import Model from "../model.js";
 
 class Controller {
