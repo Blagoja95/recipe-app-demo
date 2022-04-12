@@ -35,3 +35,4 @@ export const formSumbmit = document.querySelector(".recipe-form__search");
 export const submitForm = document.querySelector(".submit-recipe__form");
 export const submitName = document.querySelector(".submit-name");
 export const submitLast = document.querySelector(".submit-last-item");
+export const submitSection = document.querySelector(".submit-recipe");

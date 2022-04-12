@@ -17,3 +17,5 @@ OR
 - [Formspree](https://formspree.io) for contact form
 - [Forkify API](https://forkify-api.herokuapp.com/v2) for recipes data
 - [Phantom theme](https://html5up.net/phantom) for design
+
+recipe url example: http://localhost:5500/recipe.html?&recipe_id=#6255c121003c2a00181a0500

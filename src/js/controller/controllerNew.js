@@ -9,9 +9,21 @@ class Controller {
   }
 
   init = () => {
+    // init get url from model
+    this.handleCallFromModel(this.model.newRecipeURL);
+
+    // view
     this.view.bindOpenFirstBlock(this.handleFirstBlock);
     // this.view.bindOpenSecondBlock(this.handleSecondBlock);
     this.view.bindFormSubmit(this.handleSubmit);
+
+    // // model
+    this.model.bindCallControler(this.handleCallFromModel);
+  };
+
+  handleCallFromModel = (input) => {
+    if (!input) return;
+    this.view.handleNewRecipe(input);
   };
 
   handleFirstBlock = (input) => {};
@@ -20,7 +32,7 @@ class Controller {
   // Upload
   handleSubmit = (input) => {
     this.model.uploadNewRecipe(input);
-  }
+  };
 }
 
 const app = new Controller(new Model(), new View());

@@ -9,13 +9,17 @@ class Model {
       "https://forkify-api.herokuapp.com/api/v2/recipes?search=";
     this.SPECIFIC_RECIPE_URL =
       "https://forkify-api.herokuapp.com/api/v2/recipes/";
-    this.API_KEY = "f35bec5d-de69-441b-a10c-b4f4a72c267c";
+    this.API_KEY = "2b41f261-48bb-4ba6-96ef-fc9d78ebecc4";
+    this.TIMEOUT_SEC = 10;
+    this.newRecipeURL = null;
   }
-  cl;
+
+  bindCallControler(callback) {
+    this.handleCallFromModel = callback;
+  }
 
   _fetchRecipes = async (input, all = true) => {
     try {
-      console.log("feched");
       const promise = await fetch(
         `${all ? this.RECIPE_URL : this.SPECIFIC_RECIPE_URL}${input}`
       );
@@ -43,7 +47,6 @@ class Model {
   }
 
   // NEW RECIPE
-
   uploadNewRecipe = async (input) => {
     try {
       const ingredients = Object.entries(input)
@@ -59,9 +62,7 @@ class Model {
           return { quantity: quantity ? +quantity : null, unit, description };
         });
 
-      console.log("Input", input);
-
-      let recipe = {
+      const recipe = {
         title: input.recipeName,
         source_url: input.recipeUrl,
         image_url: input.recipeImage,
@@ -71,10 +72,58 @@ class Model {
         ingredients,
       };
 
-      console.log(recipe);
+      // console.log(`${this.SPECIFIC_RECIPE_URL}?key=${this.API_KEY}`);
+      this._fetchTO(`${this.SPECIFIC_RECIPE_URL}?key=${this.API_KEY}`, recipe);
     } catch (error) {
       console.error(error);
     }
+  };
+
+  _getUrl = () => {
+    const fullUrl = window.location;
+    const url = fullUrl.href.split("newRecipe");
+    if (url[0] != "") return url[0];
+  };
+
+  _fetchTO = async (url, data) => {
+    const input = data;
+    try {
+      const fetchPOST = input
+        ? fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(input),
+          })
+        : fetch(url);
+
+      const res = await Promise.race([
+        fetchPOST,
+        this._timeout(this.TIMEOUT_SEC),
+      ]);
+      const data = await res.json();
+
+      // get url of newly created recipe
+      this.specificRecipe = data;
+      this.newRecipeURL = `${this._getUrl()}recipe.html?&recipe_id=#${
+        this.specificRecipe.data.recipe.id
+      }`;
+
+      // notify controller about new recipe
+      this.handleCallFromModel(this.newRecipeURL);
+      if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  _timeout = function (s) {
+    return new Promise(function (_, reject) {
+      setTimeout(function () {
+        reject(new Error(`Request took too long! Timeout after ${s} second`));
+      }, s * 1000);
+    });
   };
   // get keywords to select all keyword who return recipes arr
   // larger then 12
