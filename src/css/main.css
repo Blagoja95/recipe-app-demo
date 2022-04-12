@@ -3410,12 +3410,30 @@ body.is-menu-visible #menu .close {
 html {
   scroll-behavior: smooth;
 }
+
+/* new recipe */
+.submit-recipe__ingredient {
+  margin-top: 1rem;
+}
+
+.submit-name {
+  margin-bottom: 5rem;
+}
+
+.submit-recipe__paragraph {
+  margin: 5rem 0 1rem 0;
+}
+
+.submit-btn-box {
+  padding-top: 5rem;
+}
+
 /* home page */
 .all-recipe-box {
   padding: 5rem 0;
 }
 
-/* All recipe */
+/* All recipes */
 .btn--recipe-group {
   z-index: 3 !important;
 }

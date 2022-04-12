@@ -15,7 +15,7 @@
     <link rel="icon" type="image/x-icon" href="src/images/logo.svg" />
     <link rel="stylesheet" href="src/css/main.css" />
     <noscript><link rel="stylesheet" href="src/css/noscript.css" /></noscript>
-    <script type="module" src="src/js/controller/controllerHome.js"></script>
+    <script type="module" src="src/js/controller/controllerNew.js"></script>
   </head>
   <body class="is-preload">
     <!-- Wrapper -->
@@ -58,24 +58,18 @@
       <div id="main">
         <div class="inner">
           <header>
-            <h1>Welcome to recipes app</h1>
-            <h2>
-              Design is made with Phantom, a free, fully responsive site<br />
-              template designed by <a href="http://html5up.net">HTML5 UP</a>.
-            </h2>
+            <h1>Create your own recipe</h1>
+            
             <p>
-              Some text about page viverra lorem, in semper lorem. Sed nisl arcu
-              euismod sit amet nisi euismod sed cursus arcu elementum ipsum arcu
-              vivamus quis venenatis orci lorem ipsum et magna feugiat veroeros
-              aliquam. Lorem ipsum dolor sit amet nullam dolore.
+              Enter recipe data. Starth with name of the recipe.
             </p>
           </header>
-          <section class="tiles tiles-home">
+          <sectio class="submit-recipe">
+            <form action="" class="submit-recipe__form">
+              <input class="submit-recipe__ingredient submit-name" type="text" required="" name="recipeName" placeholder="Recipe name">
         
-          </section>
-          <div class="all-recipe-box">
-            <a href="allRecipes.html" class="button primary fit">Go to all recipes</a>
-          </div>
+            </form>
+          </sectio>
         </div>
       </div>
 
@@ -84,6 +78,7 @@
         <div class="inner">
           <section>
             <h2>Contact me</h2>
+
             <form method="post" action="https://formspree.io/f/xnqwbven">
               <div class="fields">
                 <div class="field half">

@@ -30,3 +30,8 @@ export const GroupRecipesBTN = document.querySelector(".btn--group");
 export const form = document.querySelector(".recipe-form");
 export const formInput = document.querySelector(".recipe-form__input");
 export const formSumbmit = document.querySelector(".recipe-form__search");
+
+// CREATE NEW RECIPE PAGE
+export const submitForm = document.querySelector(".submit-recipe__form");
+export const submitName = document.querySelector(".submit-name");
+export const submitLast = document.querySelector(".submit-last-item");

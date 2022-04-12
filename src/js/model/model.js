@@ -42,6 +42,40 @@ class Model {
     this.specificRecipe = await this._fetchRecipes(id, state);
   }
 
+  // NEW RECIPE
+
+  uploadNewRecipe = async (input) => {
+    try {
+      const ingredients = Object.entries(input)
+        .filter((entry) => entry[0].startsWith("ingredient") && entry[1] !== "")
+        .map((ing) => {
+          const ingArr = ing[1].split(",").map((el) => el.trim());
+          // const ingArr = ing[1].replaceAll(' ', '').split(',');
+          if (ingArr.length !== 3)
+            throw new Error(
+              "Wrong ingredient fromat! Please use the correct format"
+            );
+          const [quantity, unit, description] = ingArr;
+          return { quantity: quantity ? +quantity : null, unit, description };
+        });
+
+      console.log("Input", input);
+
+      let recipe = {
+        title: input.recipeName,
+        source_url: input.recipeUrl,
+        image_url: input.recipeImage,
+        publisher: input.recipePublisher,
+        cooking_time: +input.recipeTime,
+        servings: +input.recipeServings,
+        ingredients,
+      };
+
+      console.log(recipe);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   // get keywords to select all keyword who return recipes arr
   // larger then 12
   // used to make serchWordsShort.js
