@@ -1,5 +1,5 @@
 import View from "../views/viewSpecific.js";
-import Model from "../model.js";
+import Model from "../model/model.js";
 
 class Controller {
   constructor(model, view) {

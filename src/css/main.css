@@ -3436,7 +3436,7 @@ html {
 }
 
 .recipe-form__input {
-  width: 50% !important;
+  max-width: 700px;
 }
 /* Specific recepi */
 .img {
@@ -3530,6 +3530,14 @@ html {
   .preparation__description {
     font-size: 26px;
     width: 100%;
+  }
+
+  .recipe-form {
+    flex-direction: column;
+  }
+
+  .recipe-form__input {
+    max-width: 100% !important;
   }
 }
 

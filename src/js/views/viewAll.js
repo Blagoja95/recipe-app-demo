@@ -8,7 +8,7 @@ class View {
 
     // form msg
     this.FORM_EMPTY_MSG = "Search bar can't be empty";
-    this.FORM_NO_RECIPES_MSG = "Search result found 0 recipes";
+    this.FORM_NO_RECIPES_MSG = "Search result found no recipes";
   }
 
   // recipe tile
