@@ -31,16 +31,12 @@ class Model {
     this.recipes = await this._fetchRecipes(input);
   }
 
-  async getRecipeGroup(input) {
-    this.recipes = await this._fetchRecipes(input);
-  }
-
   async getInitRecipes() {
     const randIndexOfSearchArr = Math.trunc(Math.random() * search.length);
     // some queris return recipes list with less then 12 items
     // do {
-      console.log("model do while");
-      this.recipes = await this._fetchRecipes(search[randIndexOfSearchArr]);
+    console.log("model do while");
+    this.recipes = await this._fetchRecipes(search[randIndexOfSearchArr]);
     // } while (this.recipes.recipes.length < 12);
   }
 

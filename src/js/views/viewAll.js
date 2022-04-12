@@ -1,12 +1,17 @@
 import * as elements from "./viewElements.js";
 class View {
   constructor() {
-    this.INIT_MAX_RECIPES = 12;
+    this.INIT_MAX_RECIPES = 12; // 12 tiles per render
     this.DEFAULT_START = 0;
     this.RECIPE_GROUP_CLASS = "btn--recipe-group";
-    this.loadMoreGroupsState = true;
+    this.loadMoreGroupsState = true; // state for load btn
+
+    // form msg
+    this.FORM_EMPTY_MSG = "Search bar can't be empty";
+    this.FORM_NO_RECIPES_MSG = "Search result found 0 recipes";
   }
 
+  // recipe tile
   _renderTile(data, element) {
     if (!data) return;
     const html = `
@@ -23,6 +28,7 @@ class View {
     this._insertHTML(element, html);
   }
 
+  // recipe group tile
   _renderRecipesListTile(title, element) {
     if (!title) return;
     const html = `
@@ -48,7 +54,6 @@ class View {
   }
 
   _render(data, start, end, element, recipeGroups = false, moreRecipe = false) {
-    console.log(data);
     if (element == null) return;
 
     if (!recipeGroups) {
@@ -60,6 +65,7 @@ class View {
   }
 
   initAllGroupRender = (data, start, end) => {
+    // reset filter and render inital 12 recipe groups tiles
     this._clearTiles(elements.tilesAll);
     this._render(data, start, end, elements.tilesAll, true);
   };
@@ -69,18 +75,40 @@ class View {
   };
 
   allRecipes = (data, start, end) => {
+    // render recipes
     this._render(data, start, end, elements.tilesAll);
   };
 
   renderMoreRecipes = (data, start, end) => {
+    // load more recipes btn
     this._render(data, start, end, elements.tilesAll, false, true);
   };
+
+  customRender(data, start, end) {
+    // for form search
+    // if an input data length is 0,
+    // there were no recipes
+    if (data.length === 0) this._formError(this.FORM_NO_RECIPES_MSG);
+    this.allRecipes(data, start, end);
+  }
+
+  _formError(msg = "error") {
+    elements.formInput.value = msg;
+    elements.formInput.style.color = "red";
+    setTimeout(() => {
+      elements.formInput.style.color = "#585858";
+      elements.formInput.value = "";
+    }, 5000); // after 5s clear error msg
+  }
 
   // event listeners
   bindLoadMoreTiles = (handler) => {
     if (!elements.LoadMoreBTN) return;
     elements.LoadMoreBTN.addEventListener("click", (event) => {
       event.preventDefault();
+      // depending on a state of the load btn
+      // tiles  will be renderd
+      //as a recepi groups or  a recipes
       handler(this.loadMoreGroupsState);
     });
   };
@@ -106,6 +134,20 @@ class View {
       // reset btn load
       this.loadMoreGroupsState = true;
       handler();
+    });
+  };
+
+  bindFormSearch = (handler) => {
+    elements.form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = elements.formInput.value;
+      if (data === "") {
+        this._formError(this.FORM_EMPTY_MSG);
+      } else {
+        // tho change load btn mode to loading recipes
+        this.loadMoreGroupsState = false;
+        handler(data);
+      }
     });
   };
 }

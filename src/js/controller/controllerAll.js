@@ -21,11 +21,11 @@ class Controller {
     this.view.bindLoadMoreTiles(this.handleMoreTiles);
     this.view.bindLoadRecipeGroup(this.handleTileGroup);
     this.view.bindGroupRecipes(this.handleGrouping);
+    this.view.bindFormSearch(this.handleForm);
   };
 
   async controlAllRecipesPage(data, start, end) {
     this.view.allRecipeGroupRender(data, start, end);
-    console.log("all triggerd");
   }
 
   resetTilePositions() {
@@ -53,7 +53,7 @@ class Controller {
   };
 
   handleTileGroup = async (input) => {
-    await this.model.getRecipeGroup(input);
+    await this.model.getAllRecipes(input);
     this.view.allRecipes(this.model.recipes.recipes, this.start, this.end);
   };
 
@@ -64,6 +64,12 @@ class Controller {
       this.start,
       this.end
     );
+  };
+
+  handleForm = async (input) => {
+    await this.model.getAllRecipes(input);
+    this.resetTilePositions();
+    this.view.customRender(this.model.recipes.recipes, this.start, this.end);
   };
 }
 
