@@ -12,6 +12,10 @@ OR
 3. `npm start`
 4. http://localhost:1234/
 
+## ABOUT
+
+This application allows its user to search over a million of different recipes. Add new recipes, filter recipes by keyword like ingredient or find specific recipe with a search bar. A user also has the option of creating their own recipe. This application is made with MVC architecture.
+
 ## Tools and resources i used:
 
 - [Formspree](https://formspree.io) for contact form
